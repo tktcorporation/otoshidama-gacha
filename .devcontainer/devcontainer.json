@@ -1,0 +1,27 @@
+{
+    "name": "otoshidama-gacha",
+    "build": {
+      "dockerfile": "./Dockerfile",
+      "context": ".."
+    },
+    "runArgs": ["--env-file", ".devcontainer/.devcontainer.env"],
+    "features": {
+      "ghcr.io/devcontainers/features/docker-in-docker": {},
+      "ghcr.io/devcontainers/features/github-cli:1": {},
+      "ghcr.io/devcontainers/features/node:1": {}
+    },
+    "customizations": {
+      "vscode": {
+        "extensions": [
+            "WakaTime.vscode-wakatime",
+            "YoavBls.pretty-ts-errors",
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "supabase.supabase",
+            "biomejs.biome"
+        ]
+      }
+    },
+    "forwardPorts": [5173],
+    "postCreateCommand": "npm i -g @antfu/ni && git config --global user.name \"${GIT_USER_NAME}\" && git config --global user.email \"${GIT_USER_EMAIL}\""
+  }

@@ -12,12 +12,6 @@ export const OTOSHIDAMA_CONFIG: GachaConfig = {
   probabilities: [0.4, 0.3, 0.15, 0.1, 0.05]
 };
 
-export function calculateExpectedValue(config: GachaConfig): number {
-  return config.amounts.reduce((sum, amount, index) => {
-    return sum + amount * config.probabilities[index];
-  }, 0);
-}
-
 export function spinGacha(config: GachaConfig): number {
   const random = Math.random();
   let cumulativeProbability = 0;
@@ -30,11 +24,4 @@ export function spinGacha(config: GachaConfig): number {
   }
   
   return config.amounts[0]; // フォールバック
-}
-
-// ガチャを実行して結果を保存する関数
-export async function playAndSaveGacha(playerName: string, config: GachaConfig = OTOSHIDAMA_CONFIG) {
-  const amount = spinGacha(config);
-  await saveGachaResult(amount, playerName);
-  return amount;
 }

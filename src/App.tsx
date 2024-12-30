@@ -1,25 +1,16 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { GachaPage } from '@/pages/GachaPage';
-import { ResultPage } from '@/pages/ResultPage';
+import { GachaForm, GachaResult } from '@/components/OtoshidamaGacha';
 import { Toaster } from '@/components/ui/toaster';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <GachaPage />,
-  },
-  {
-    path: '/result/:amount',
-    element: <ResultPage />,
-  },
-]);
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <>
-      <RouterProvider router={router} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<GachaForm />} />
+        <Route path="/result/:playerName" element={<GachaResult />} />
+      </Routes>
       <Toaster />
-    </>
+    </Router>
   );
 }
 
